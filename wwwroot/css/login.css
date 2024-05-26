@@ -1,0 +1,111 @@
+
+.logowanie {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 80vh;
+flex-direction: column; /* Add this to make it column-based */
+}
+
+/* Style pills navigation */
+.nav-pills {
+justify-content: center;
+margin-bottom: 20px; /* More space below */
+}
+.nav-pills .nav-link {
+font-size: 1.2rem;
+padding: 12px 24px; /* Bigger padding for larger clickable area */
+}
+
+/* Adjust the width of the form */
+.form-outline {
+margin-bottom: 25px;
+width: 100%;
+}
+
+/* Make the form controls take more space */
+.form-control {
+font-size: 1.1rem;
+padding: 12px;
+}
+
+/* Style form labels */
+.form-outline .form-label {
+font-size: 1.1rem;
+font-weight: bold;
+}
+
+/* Checkbox and label alignment */
+.form-check-input {
+margin-right: 10px;
+}
+
+.form-check-label {
+font-size: 1rem;
+}
+
+/* Horizontal layout for checkbox and forgot password */
+.row.mb-4 {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+/* Style the sign-in button */
+.btn-primary {
+font-size: 1.2rem;
+padding: 12px 30px;
+width: 100%; /* Make button take full width */
+}
+
+/* Style the link in the form */
+a {
+color: #007bff;
+text-decoration: none;
+}
+
+a:hover {
+color: #0056b3;
+text-decoration: underline;
+}
+
+/* Center text for register section */
+.text-center {
+margin-top: 20px;
+font-size: 1rem;
+}
+
+/* Additional styling for the form container */
+.tab-content {
+width: 100%; /* Full width to align things properly */
+max-width: 480px; /* Maximum width for larger screens */
+}
+
+/* Increase font size and spacing in the form */
+form p {
+font-size: 1.1rem;
+padding-bottom: 10px;
+}
+
+/* Style specific to mobile screens */
+@media (max-width: 576px) {
+.container {
+    min-height: 100vh;
+    padding: 10px; /* Add some padding for smaller screens */
+}
+
+.nav-pills .nav-link {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+}
+}

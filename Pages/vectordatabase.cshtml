@@ -1,0 +1,183 @@
+@page
+@model VectorDatabase
+@{
+    ViewData["Title"] = "File Reader";
+}
+<link rel="stylesheet" href="~/css/vectordatabase.css" asp-append-version="true" />
+
+
+
+@if(HttpContext.Session.GetString("username") == null)
+{
+        <div class="container contain">
+        <div class="content">
+        <h1>You need to login to the website to use fiile reading service</h1>
+        </div>
+        </div>
+}
+@if(HttpContext.Session.GetString("username") != null)
+{    <div class="container contain"> 
+    <div class="content">
+        <h2>Upload File</h2>
+        <form enctype="multipart/form-data" method="post">
+            <dl>
+                <dt>
+                    <label asp-for="FileUpload.FormFile"></label>
+                </dt>
+                <dd>
+                    <input asp-for="FileUpload.FormFile" type="file">
+                    <span asp-validation-for="FileUpload.FormFile"></span>
+                </dd>
+            </dl>
+            <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+        </form>
+    </div>
+    <div class="file-list">
+        <h2>Files already sent:</h2>
+        <ul>
+            @foreach(string file in Model.fileEntries)
+            {
+                <li>
+                    <span>@file</span>
+                </li>
+            }
+            <form  method="post" asp-page-handler="DeleteFiles"><button  class="delete-btn" type="submit" >Delete</button></form>
+
+        </ul>
+    </div>
+</div>
+
+    <div class="chat-window">
+    <!-- Chat messages will be displayed here -->
+    
+</div>
+<div class="chat-input">
+
+    <form id="chatForm" method="post" asp-page-handler="SendMessage">
+
+        <textarea name="Message" rows="1"></textarea>
+
+        <input type="submit" value="Send" />
+
+    </form>
+
+    <form id="chatForm2" method="post" asp-page-handler="DeleteMessage">
+
+        <input type="submit" value="Delete" />
+
+    </form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $("#chatForm2").on("submit", function(event){
+
+            event.preventDefault();
+
+            $.ajax({
+
+                url: $(this).attr("action"),
+
+                type: "POST",
+
+                data: $(this).serialize(),
+
+                success: function(data){
+
+                    // Clear the chat window
+
+                    $(".chat-window").empty();
+
+                    // Add the updated messages to the chat window
+
+                    data.currentMessages.forEach(function(message) {
+
+                        $(".chat-window").append("<p>" + message + "</p>");
+
+                    });
+
+                },
+
+                error: function(xhr, status, error){
+
+                    // Handle the error
+
+                    alert("Error: " + error);
+
+                }
+
+            });
+
+        });
+
+        
+
+        $("#chatForm").on("submit", function(event){
+
+            event.preventDefault();
+
+
+
+            $.ajax({
+
+                url: $(this).attr("action"),
+
+                type: "POST",
+
+                data: $(this).serialize(),
+
+                success: function(data){
+
+                    // Add the user's message to the chat window
+
+                    $(".chat-window").append("<p>User: " + $("textarea[name='Message']").val() + "</p>");
+
+
+
+                    // Add the AI's response to the chat window
+
+                    $(".chat-window").append("<p>AI: " + data.response + "</p>");
+
+
+
+                    // Clear the input field
+
+                    $("textarea[name='Message']").val("");
+
+                },
+
+                error: function(xhr, status, error){
+
+                    // Handle the error
+
+                    alert("Error: " + error);
+
+                }
+
+            });
+
+        });
+
+
+
+        // Auto-expand textarea
+
+        $("textarea[name='Message']").on('input', function () {
+
+            this.style.height = 'auto';
+
+            this.style.height = (this.scrollHeight) + 'px';
+
+        });
+
+    });
+
+</script>
+}
+    
+    
+        

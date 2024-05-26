@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <style>
+
+    </style>
+</head>
+<body>
+  
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Chatnow</a>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat?botId=1">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/vectordatabase">Document Reader</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Aboutus">About us</a>
+                        </li>
+                    </ul>
+                </div>
+                @{var username = Context.Session.GetString("username") ?? "LogIn";
+                if (username == "LogIn")
+                {
+                    <a class="navbar-brand" href="/login">
+                        @username
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" href="/profile">
+                        @username
+                    </a>
+                }
+                
+                }
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer mt-4">
+        <div class="container">
+            <p>&copy; Trzymajcie sie w tym życiu. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

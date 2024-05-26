@@ -1,0 +1,181 @@
+@page
+@model ChatModel
+@{
+    ViewData["Title"] = "Chat page";
+}
+<link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+
+
+<div class="chat-description">
+    @{ string botname;
+
+        switch(Model.BotId)
+        {
+            case 0:
+                botname = "Marcus Aurelius";
+                break;
+            case 1:
+                botname = "Evil AI";
+                break;
+            case 2:
+                botname = "Joseph Stalin";
+                break;
+            case 3:
+                botname = "Patrick Bateman";
+                break;
+            case 4:
+                botname = "Albert Einstein";
+                break;
+            case 5:
+                botname = "Carl Jung";
+                break;
+            default:
+                botname = "Unknown";
+                break;
+        }
+
+
+        
+    string imgpath = "~/img/bot" + Model.BotId.ToString() + ".png";
+
+}
+
+
+
+    <img src="@Url.Content(imgpath)" alt="Chat Avatar">
+    <p>Welcome to the chat with @botname</p>
+    <p>Start a conversation or join an existing one below.</p>
+</div>
+<div class="chat-window">
+    <!-- Chat messages will be displayed here -->
+    @foreach (var message in Model.CurrentMessages)
+    {
+        <p>@message</p>
+    }
+</div>
+<<div class="chat-input">
+
+    <form id="chatForm" method="post" asp-page-handler="SendMessage">
+
+        <textarea name="Message" rows="1"></textarea>
+
+        <input type="submit" value="Send" />
+
+    </form>
+
+    <form id="chatForm2" method="post" asp-page-handler="DeleteMessage">
+
+        <input type="submit" value="Delete" />
+
+    </form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $("#chatForm2").on("submit", function(event){
+
+            event.preventDefault();
+
+            $.ajax({
+
+                url: $(this).attr("action"),
+
+                type: "POST",
+
+                data: $(this).serialize(),
+
+                success: function(data){
+
+                    // Clear the chat window
+
+                    $(".chat-window").empty();
+
+                    // Add the updated messages to the chat window
+
+                    data.currentMessages.forEach(function(message) {
+
+                        $(".chat-window").append("<p>" + message + "</p>");
+
+                    });
+
+                },
+
+                error: function(xhr, status, error){
+
+                    // Handle the error
+
+                    alert("Error: " + error);
+
+                }
+
+            });
+
+        });
+
+        
+
+        $("#chatForm").on("submit", function(event){
+
+            event.preventDefault();
+
+
+
+            $.ajax({
+
+                url: $(this).attr("action"),
+
+                type: "POST",
+
+                data: $(this).serialize(),
+
+                success: function(data){
+
+                    // Add the user's message to the chat window
+
+                    $(".chat-window").append("<p>User: " + $("textarea[name='Message']").val() + "</p>");
+
+
+
+                    // Add the AI's response to the chat window
+
+                    $(".chat-window").append("<p>AI: " + data.response + "</p>");
+
+
+
+                    // Clear the input field
+
+                    $("textarea[name='Message']").val("");
+
+                },
+
+                error: function(xhr, status, error){
+
+                    // Handle the error
+
+                    alert("Error: " + error);
+
+                }
+
+            });
+
+        });
+
+
+
+        // Auto-expand textarea
+
+        $("textarea[name='Message']").on('input', function () {
+
+            this.style.height = 'auto';
+
+            this.style.height = (this.scrollHeight) + 'px';
+
+        });
+
+    });
+
+</script>

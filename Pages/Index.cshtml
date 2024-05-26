@@ -1,0 +1,68 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+
+
+  <div class="container pierwszy">
+    <h1>Talk to AI</h1>
+    <p>
+      Welcome to the AI chatbot world where you can talk to AI and have a great time or use AI tolls to help you with your work. Choose a bot or tool and start chatting or using it. Enjoy your time!
+    </p>
+
+  </div>
+  
+  <div class="container-fluid nowetlo">
+
+  <hr class="thick-hr" />
+
+  <div class="container drugi">
+    
+    <h1>Bot selection</h1>
+    <p>
+      You can choose from a variety of bots. Each bot has its own personality and quirks. Choose wisely.
+  </div>
+  <div class="container images">
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+@foreach(var bot in Model.bots)
+{
+    <div class="row">
+        <div class="card shadow-sm">
+            <a href=@Url.Content(bot[3])>
+                <img class="bd-placeholder-img card-img-top" src=@Url.Content(bot[2]) width="100%" height="225" alt="Thumbnail">            
+                <div class="card-body">
+                    <h2 class="text-body-secondary">@bot[0] </h2>
+                    <p class="card-text">@bot[1]</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+        </div>
+      
+    
+  </div>
+    </div>
+
+
+<hr class="thick-hr" />
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-6">
+          <img src="https://cryps.pl/wp-content/uploads/2023/05/AI-sztuczna-inteligencja.jpg" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="col-md-6">
+          <h1>How it works?</h1>
+          <h3>All bots use Open-AI chat models, which were adjusted to needs by me. For the Document Reader i use Microsoft KernelMemory which i a new tool for .net 8.</h3>
+      </div>
+  </div>
+</div>

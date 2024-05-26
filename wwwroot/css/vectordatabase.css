@@ -1,0 +1,277 @@
+.contain {
+
+  display: flex;
+
+  text-align: center;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  padding: 20px;
+
+}
+
+
+
+.content {
+
+  text-align: center;
+
+  padding: 20px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 10px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  margin-top: 50px;
+
+  flex: 1;
+
+  max-width: 400px;
+
+}
+
+
+
+.file-list {
+
+  flex: 1;
+
+  margin-left: 20px;
+
+}
+
+
+
+.file-list h2 {
+
+  margin-bottom: 20px;
+
+}
+
+
+
+.file-list ul {
+
+  list-style-type: none;
+
+  padding: 0;
+
+}
+
+
+
+.file-list li {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 10px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.file-list li span {
+
+  flex: 1;
+
+}
+
+
+
+.delete-btn {
+
+  background-color: #ff4d4d;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 5px;
+
+  padding: 5px 10px;
+
+  cursor: pointer;
+
+}
+
+
+
+.delete-btn:hover {
+
+  background-color: #ff1a1a;
+
+}
+.chat-window {
+  
+    flex: 1;
+  
+    background-color: #fff;
+  
+    border: 1px solid #ddd;
+  
+    border-radius: 10px;
+  
+    padding: 20px;
+  
+    margin: 20px;
+  
+    margin-left: 100px;
+
+    margin-right: 100px;
+
+    overflow-y: auto;
+  
+    min-height: 300px; /* Minimum height set here */
+  
+  }
+  
+  
+  
+  .chat-window p {
+  
+    padding: 10px;
+  
+    border-radius: 10px;
+  
+    margin-bottom: 10px;
+  
+    max-width: 70%;
+  
+  }
+  
+  
+  
+  .chat-window p:nth-child(odd) {
+  
+    background-color: #e9ecef;
+  
+    align-self: flex-start;
+  
+  }
+  
+  
+  
+  .chat-window p:nth-child(even) {
+  
+    background-color: #007bff;
+  
+    color: white;
+  
+    align-self: flex-end;
+  
+  }
+  
+  
+  
+  .chat-input {
+
+    display: flex;
+  
+    justify-content: center;
+  
+    margin: 20px;
+  
+  }
+  
+  
+  
+  .chat-input form {
+  
+    display: flex;
+  
+    align-items: center;
+  
+    margin: 0 10px;
+  
+  }
+  
+  
+  
+  .chat-input textarea {
+  
+    width: 450px;
+  
+    padding: 10px;
+  
+    border: 1px solid #ddd;
+  
+    border-radius: 20px;
+  
+    margin-right: 10px;
+  
+    resize: none; /* Prevent manual resizing */
+  
+    overflow: hidden; /* Hide overflow to allow auto-expansion */
+  
+  }
+  
+  
+  
+  .chat-input input[type="submit"] {
+  
+    padding: 10px 20px;
+  
+    border: none;
+  
+    border-radius: 20px;
+  
+    background-color: #007bff;
+  
+    color: white;
+  
+    cursor: pointer;
+  
+    transition: background-color 0.3s ease;
+  
+  }
+  
+  
+  
+  .chat-input input[type="submit"]:hover {
+  
+    background-color: #0056b3;
+  
+  }
+  
+  
+  /* Add animations */
+  
+  @keyframes fadeIn {
+  
+    from {
+  
+      opacity: 0;
+  
+    }
+  
+    to {
+  
+      opacity: 1;
+  
+    }
+  
+  }
+  
+  
+  
+  .chat-window p {
+  
+    animation: fadeIn 0.5s ease-in-out;
+  
+  }
